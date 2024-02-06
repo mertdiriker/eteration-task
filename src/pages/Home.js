@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import {Container,Row,Col} from "react-bootstrap";
 import ProductCard from "../components/ProductCard";
@@ -6,36 +5,52 @@ import ReactPaginate from 'react-paginate';
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
-    const products = useSelector((state) => state.product);
+const Home = (props) => {
+    const {searchedProducts} = props;
+    const products = searchedProducts;
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const filters = useSelector((state) => state.filter);
     const [pageNumber, setPageNumber] = useState(0);
     const productsPerPage = 12; 
     const pagesVisited = pageNumber * productsPerPage;
-    const displayProducts = products.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
-        return (
-          <Col md={3} key={product.id}>
-            <ProductCard product={product}></ProductCard>
-          </Col>
-        );
-      });
-    
-    const pageCount = Math.ceil(products.length / productsPerPage);
+    const navigate = useNavigate();
+    const displayProducts = filteredProducts.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
+        
+            return (
+                <Col onClick={() => navigate('/details',{state:{
+                    product:product
+                }})} md={6} lg={4} xl={3} key={product.id}>
+                    <ProductCard product={product}></ProductCard>
+                </Col>
+            )
+    });
+    const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
     const changePage = ({ selected }) => {
         setPageNumber(selected);
       };
-    
+
+    useEffect(() => {
+        if(filters.selectedBrands.length === 0 && filters.selectedModels.length === 0){
+            setFilteredProducts(products);
+        }
+        else{
+            setFilteredProducts(products.filter(product => filters.selectedBrands.includes(product.brand) || filters.selectedModels.includes(product.model)));
+        }
+        setPageNumber(0);
+    },[products,filters])
     
     return (
         <Container className="mb-5">
             <Row className="mt-4">
-                <Col md={2}>
+                <Col md={3} lg={3} xl={2}>
                     <LeftBar></LeftBar>
                 </Col>
-                <Col md={8}>
+                <Col md={6} lg={6} xl={8}>
                     <Row>{displayProducts}</Row>
                 </Col>
-                <Col md={2}>
+                <Col md={3} lg={3} xl={2}>
                     <RightBar></RightBar>
                 </Col>
             </Row>

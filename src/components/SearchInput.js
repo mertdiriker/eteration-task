@@ -1,7 +1,9 @@
-const SearchInput = () => {
+const SearchInput = (props) => {
+    const { onChange } = props;
     return (
         <div className="input-group">
             <input
+            onChange={onChange}
                 type="text"
                 className="form-control"
                 placeholder="Search ..."
