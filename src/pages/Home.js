@@ -5,7 +5,6 @@ import ReactPaginate from 'react-paginate';
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const Home = (props) => {
     const {searchedProducts} = props;
@@ -15,7 +14,6 @@ const Home = (props) => {
     const [pageNumber, setPageNumber] = useState(0);
     const productsPerPage = 12; 
     const pagesVisited = pageNumber * productsPerPage;
-    const navigate = useNavigate();
     const displayProducts = filteredProducts.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
         
             return (
