@@ -13,13 +13,13 @@ const ProductDetail = () => {
     return (
         <Container>
             <Row className="mt-5">
-                <Col md={9}>
+                <Col md={8} lg={8} xl={10}>
                     <Card className="p-3">
                         <Row>
-                            <Col className="d-flex justify-content-start align-items-center" md={6}>
+                            <Col className="d-flex justify-content-start align-items-center" lg={6}>
                                 <img className="product-detail-img" src={product.image} alt={product.name}/>
                             </Col>
-                            <Col md={6}>
+                            <Col lg={6}>
                                 <Card.Text className="product-detail-name fs-3 mt-3 mb-4">{product.name}</Card.Text>
                                 <Card.Text className="product-detail-price mb-5 fs-4 text-primary">{product.price}₺</Card.Text>
                                 <Button onClick={()=>{handleAddToCart()}} className="w-100" variant="primary">Add to Cart</Button>
@@ -28,7 +28,7 @@ const ProductDetail = () => {
                         </Row>
                     </Card>
                 </Col>
-                <Col md={3}>
+                <Col className="mt-3 mt-md-0" md={4} lg={4} xl={2}>
                     <RightBar></RightBar>
                 </Col>
             </Row>

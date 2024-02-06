@@ -19,9 +19,7 @@ const Home = (props) => {
     const displayProducts = filteredProducts.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
         
             return (
-                <Col onClick={() => navigate('/details',{state:{
-                    product:product
-                }})} md={6} lg={4} xl={3} key={product.id}>
+                <Col  md={6} lg={4} xl={3} key={product.id}>
                     <ProductCard product={product}></ProductCard>
                 </Col>
             )
