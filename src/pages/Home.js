@@ -14,25 +14,25 @@ const Home = (props) => {
     const [pageNumber, setPageNumber] = useState(0);
     const productsPerPage = 12; 
     const pagesVisited = pageNumber * productsPerPage;
-    const displayProducts = filteredProducts.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
+    const displayProducts = filteredProducts?.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => {
         
             return (
-                <Col  md={6} lg={4} xl={3} key={product.id}>
-                    <ProductCard product={product}></ProductCard>
+                <Col data-testid="product-item"  md={6} lg={4} xl={3} key={product.id}>
+                    <ProductCard  product={product}></ProductCard>
                 </Col>
             )
     });
-    const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
+    const pageCount = Math.ceil(filteredProducts?.length / productsPerPage);
     const changePage = ({ selected }) => {
         setPageNumber(selected);
       };
 
     useEffect(() => {
-        if(filters.selectedBrands.length === 0 && filters.selectedModels.length === 0){
+        if(filters?.selectedBrands.length === 0 && filters?.selectedModels.length === 0){
             setFilteredProducts(products);
         }
         else{
-            setFilteredProducts(products.filter(product => filters.selectedBrands.includes(product.brand) || filters.selectedModels.includes(product.model)));
+            setFilteredProducts(products?.filter(product => filters?.selectedBrands.includes(product.brand) || filters?.selectedModels.includes(product.model)));
         }
         setPageNumber(0);
     },[products,filters])

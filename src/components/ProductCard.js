@@ -11,7 +11,7 @@ const ProductCard = ({product}) => {
     }
     const navigate = useNavigate();
     return (
-            <Card data-testid="product" onClick={() => navigate('/details',{state:{
+            <Card data-price={product.price} data-description={product.description} data-model={product.model} data-brand={product.brand} data-testid="product"  onClick={() => navigate('/details',{state:{
                 product:product
             }})} className="d-grid my-3 product-card cursor">
                 <Card.Img variant="top" src={product.image} className="product-img" alt={product.name} />
@@ -24,7 +24,7 @@ const ProductCard = ({product}) => {
                     <Card.Text>
                         {product.name}
                     </Card.Text>
-                    <Button onClick={handleAddToCart} className="add-to-cart-btn">Add to Cart</Button>
+                    <Button onClick={handleAddToCart} data-product-name={product.name} className="add-to-cart-btn">Add to Cart</Button>
                 </Card.Body>
             </Card>
     );

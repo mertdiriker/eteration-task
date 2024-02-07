@@ -16,8 +16,8 @@ function App() {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart);
   
-  const getProducts = () => {
-        axios.get("https://5fc9346b2af77700165ae514.mockapi.io/products",{
+  const getProducts = async () => {
+       await axios.get("https://5fc9346b2af77700165ae514.mockapi.io/products",{
             headers: {
             }
         }).then((res)=>{

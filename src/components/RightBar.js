@@ -20,11 +20,11 @@ const RightBar = () => {
             <Col>
                 <Card className="p-2">
                     {
-                        cartProducts.length === 0 ? <span className="cart-empty-span">Cart is empty</span>
+                        cartProducts?.length === 0 ? <span className="cart-empty-span">Cart is empty</span>
                         :
-                        cartProducts.map((product) => {
+                        cartProducts?.map((product) => {
                             return (
-                            <Row>
+                            <Row data-testid="cart-item" data-product-name={product.name} key={product.id}>
                                 <Col md={6} className="d-flex align-items-start flex-column py-2">
                                     <span className="cart-product-name-span">{product.name}</span>
                                     <span className="cart-product-price-span">{product.price}</span>
@@ -42,7 +42,7 @@ const RightBar = () => {
                     }
                 </Card>
                 <Card className="p-2 d-flex mt-3    ">
-                    <Card.Text className="text-start p-1 d-flex"><span>Total Price :&nbsp;</span> <span className="total-price-text">  {tL.format(cartProducts.reduce((acc,curr) => acc + curr.price * curr.amount,0))}₺</span></Card.Text>
+                    <Card.Text className="text-start p-1 d-flex"><span>Total Price :&nbsp;</span> <span className="total-price-text">  {tL.format(cartProducts?.reduce((acc,curr) => acc + curr.price * curr.amount,0))}₺</span></Card.Text>
                     <Button variant="primary" className="w-100">Checkout</Button>
                 </Card>
             </Col>

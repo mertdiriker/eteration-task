@@ -14,7 +14,7 @@ const Header = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav ">
           <Nav className="w-100 justify-content-center mt-3 mt-sm-0">
-            <SearchInput onChange={searchProduct} />
+            <SearchInput data-testid="search-header" onChange={searchProduct} />
           </Nav>
           <Nav className="me-auto w-100 justify-content-end">
             <Nav.Link href="#home"><b className='text-white'>13,137.00₺</b></Nav.Link>

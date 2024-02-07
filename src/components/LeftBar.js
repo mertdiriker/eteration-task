@@ -35,8 +35,8 @@ const LeftBar = () => {
       }, [sortOption]);
 
       useEffect(() => {
-        setBrands([...new Set(products.map((product) => product.brand))].sort());
-        setModels([...new Set(products.map((product) => product.model))].sort());
+        setBrands([...new Set(products?.map((product) => product.brand))].sort());
+        setModels([...new Set(products?.map((product) => product.model))].sort());
       },[products])
 
       useEffect(() => {
@@ -102,16 +102,16 @@ const LeftBar = () => {
                 <span className="light-span">Sort by</span>
                 <Card className="">
                     <div className="sort-div mt-2">
-                        <input className="cursor" onChange={handleSortOptionChange} id="oldtonew" name="sort" type="radio"></input><label className="cursor" for="oldtonew">Old to new</label>
+                        <input className="cursor" onChange={handleSortOptionChange} id="oldtonew" name="sort" type="radio"></input><label data-testid="sortoldtonew" className="cursor" for="oldtonew">Old to new</label>
                     </div>
                     <div className="sort-div">
-                        <input className="cursor" onChange={handleSortOptionChange} id="newtoold" name="sort" type="radio"></input><label className="cursor" for="newtoold">New to old</label>
+                        <input className="cursor" onChange={handleSortOptionChange} id="newtoold" name="sort" type="radio"></input><label data-testid="sortnewtoold" className="cursor" for="newtoold">New to old</label>
                     </div>
                     <div className="sort-div">
-                        <input className="cursor" onChange={handleSortOptionChange} id="pricetohigh" name="sort" type="radio"></input><label className="cursor" for="pricetohigh">Price high to low</label>
+                        <input className="cursor" onChange={handleSortOptionChange} id="pricetohigh" name="sort" type="radio"></input><label data-testid="sortpricetohigh" className="cursor" for="pricetohigh">Price high to low</label>
                     </div>
                     <div className="sort-div">
-                        <input className="cursor" onChange={handleSortOptionChange} id="pricetolow" name="sort" type="radio"></input><label className="cursor" for="pricetolow">Price low to high</label>
+                        <input className="cursor" onChange={handleSortOptionChange} id="pricetolow" name="sort" type="radio"></input><label data-testid="sortpricetolow" className="cursor" for="pricetolow">Price low to high</label>
                     </div>
                 </Card>
             </Col>
@@ -130,7 +130,7 @@ const LeftBar = () => {
                                     :
                                         <input onChange={handleBrandOptionChange} className="cursor" id={brand+brand.id} name="brand" value={brand} type="checkbox"></input>
                                     }
-                                    <label className="cursor" for={brand+brand.id}>{brand}</label>
+                                    <label data-testid="brand-label" className="cursor" for={brand+brand.id}>{brand}</label>
                                 </div>
                             )
                         })}
@@ -153,7 +153,7 @@ const LeftBar = () => {
                                         :
                                         <input onChange={handleModelOptionChange} className="cursor" id={model+model.id} name="model" value={model} type="checkbox"></input>
                                     }
-                                    <label className="cursor" for={model+model.id}>{model}</label>
+                                    <label data-testid="model-label" className="cursor" for={model+model.id}>{model}</label>
                                 </div>
                             )
                         })}
