@@ -4,7 +4,7 @@ get started #
 
 npm i
 
-npm run start
+npm start
 
 for test #
 
