@@ -8,13 +8,14 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { setProducts } from './slicers/productSlice';
 import ProductDetail from "./pages/ProductDetail";
+import { setCarts } from "./slicers/cartSlice";
 function App() {
   const [searchedProducts,setSearchedProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const products = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart);
- 
+  
   const getProducts = () => {
         axios.get("https://5fc9346b2af77700165ae514.mockapi.io/products",{
             headers: {
@@ -41,6 +42,7 @@ function App() {
     };
   useEffect(()=>{
       getProducts()
+      dispatch(setCarts(JSON.parse(localStorage.getItem('cart'))||[]))
   },[])
   useEffect(()=>{
       setSearchedProducts(products)

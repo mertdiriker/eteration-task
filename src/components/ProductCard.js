@@ -11,7 +11,7 @@ const ProductCard = ({product}) => {
     }
     const navigate = useNavigate();
     return (
-            <Card onClick={() => navigate('/details',{state:{
+            <Card data-testid="product" onClick={() => navigate('/details',{state:{
                 product:product
             }})} className="d-grid my-3 product-card cursor">
                 <Card.Img variant="top" src={product.image} className="product-img" alt={product.name} />

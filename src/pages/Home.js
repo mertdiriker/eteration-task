@@ -44,7 +44,7 @@ const Home = (props) => {
                     <LeftBar></LeftBar>
                 </Col>
                 <Col md={6} lg={6} xl={8}>
-                    <Row>{displayProducts}</Row>
+                    <Row data-testid="products">{displayProducts}</Row>
                 </Col>
                 <Col md={3} lg={3} xl={2}>
                     <RightBar></RightBar>
